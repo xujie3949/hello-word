@@ -24,17 +24,31 @@
 
 地图要素的几何属性可以根据<OpenGIS Simple Features Implementation Specification>规范分为以下几类:
 * `Point:` 代表一个点
+
 	![Point](images/Point.png)	
+	
 * `MultiPoint:` 若干点组成的集合
+
 	![MultiPoint](images/MultiPoint.png)
+	
 * `LineString:` 由若干点按顺序组成的线串,其中LinearRing是LineString的首尾点相等时的特例
+
 	![LineString](images/LineString.png)
-	![LinearString](images/LinearString.png)
+	![LinearRing](images/LinearRing.png)
+	
 * `MultiLineString:` 若干LineString组成的集合
+
 	![MultiLineString](images/MultiLineString.png)
+	
 * `Polygon:` 多边形由一个外壳和若干洞组成
+
 	![Polygon](images/Polygon.png)
+	
 * `MultiPolygon:` 若干Polygon组成的集合
+
 	![MultiPolygon](images/MultiPolygon.png)
+	
 * `GeometryCollection:` 若干任意类型Geometr组成的集合
+
 	![GeometryCollection](images/GeometryCollection.png)
+	
