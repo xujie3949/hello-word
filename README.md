@@ -40,7 +40,7 @@
 
 	![MultiLineString](images/MultiLineString.png)
 	
-* `Polygon:` 多边形由一个外壳和若干洞组成
+* `Polygon:` 多边形由一个外壳和若干洞组成,也可以没有洞.其中外壳是顺时针方向,洞是逆时针方向
 
 	![Polygon](images/Polygon.png)
 	
