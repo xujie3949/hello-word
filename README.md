@@ -17,12 +17,12 @@
 
 在地图上,现实世界中的任何物体都被抽象为地图要素(Feature).地图要素主要有两个属性:
 
-* `geometry:` 地图要素的几何属性,用于表达地图要素的形状,可以大致分为点线面基类,详见[几何](#几何)小节
+* `geometry:` 地图要素的几何属性,用于表达地图要素的形状,可以大致分为点线面几类,详见[几何](#几何)小节
 * `properties:` 地图要素的除几何以外的其他属性,通常有一个id字段和type字段,组合起来可唯一标识一个要素
 
 ## 几何
 
-地图要素的几何属性可以根据<OpenGIS Simple Features Implementation Specification>规范分为以下几类:
+地图要素的几何属性可以根据[OpenGIS Simple Features Implementation Specification](http://www.opengeospatial.org/standards/sfa)分为以下几类:
 * `Point:` 代表一个点
 
 	![Point](images/Point.png)	
@@ -48,7 +48,7 @@
 
 	![MultiPolygon](images/MultiPolygon.png)
 	
-* `GeometryCollection:` 若干任意类型Geometr组成的集合
+* `GeometryCollection:` 若干任意类型Geometry组成的集合
 
 	![GeometryCollection](images/GeometryCollection.png)
 	
