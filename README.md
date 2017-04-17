@@ -1,35 +1,40 @@
+# 一体化编辑平台设计文档
+
 ## 目录
 
 1. [地图基础知识]()
-	1. [地图简介]()
-	    1. [地图简介]()
-		    1. [地图简介]()
-		    1. [地图简介]()
-		    1. [地图简介]()
-	    1. [地图简介]()
-	    1. [地图简介]()
+	1. [地图术语]()
+		1. [要素](#要素)
+		1. [几何](#几何)
+		1. [图层]()
 	1. [几何类型]()
 	1. [地图简介]()
 1. [常用基础库介绍]()
 1. [总体架构图]()
 1. [模块类图]()
 
-[测试跳转](#目录)
-[TOC]
+## 要素
 
-```sequence
-Alice->Bob: Hello Bob, how are you?
-Note right of Bob: Bob thinks
-Bob-->Alice: I am good thanks!
-```
+在地图上,现实世界中的任何物体都被抽象为地图要素(Feature).地图要素主要有两个属性:
 
-这是一行  
-萨阿迪算法但是
+* `geometry:` 地图要素的几何属性,用于表达地图要素的形状,可以大致分为点线面基类,详见[几何](#几何)小节
+* `properties:` 地图要素的除几何以外的其他属性,通常有一个id字段和type字段,组合起来可唯一标识一个要素
 
+## 几何
 
-
-领一行
-
-fdadfsa
-
-发范德萨
+地图要素的几何属性可以根据<OpenGIS Simple Features Implementation Specification>规范分为以下几类:
+* `Point:` 代表一个点
+	[!Point](images/Point.png)	
+* `MultiPoint:` 若干点组成的集合
+	[!MultiPoint](images/MultiPoint.png)
+* `LineString:` 由若干点按顺序组成的线串,其中LinearRing是LineString的首尾点相等时的特例
+	[!LineString](images/LineString.png)
+	[!LinearString](images/LinearString.png)
+* `MultiLineString:` 若干LineString组成的集合
+	[!MultiLineString](images/MultiLineString.png)
+* `Polygon:` 多边形由一个外壳和若干洞组成
+	[!Polygon](images/Polygon.png)
+* `MultiPolygon:` 若干Polygon组成的集合
+	[!MultiPolygon](images/MultiPolygon.png)
+* `GeometryCollection:` 若干任意类型Geometr组成的集合
+	[!GeometryCollection](images/GeometryCollection.png)
