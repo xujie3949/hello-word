@@ -139,9 +139,9 @@
 * `proj4:` 提供各种坐标系之间的转换方法,也拥有众多语言的移植版本.[链接](https://github.com/proj4js/proj4js)
 * `lodash:` lodash是从Underscore分化而来,提供了众多的基础的实用方法.已经成为最流行的基础库,众多开源项目都在使用,比如JavaScript转译器Babel、博客平台Ghost，和项目脚手架工具Yeoman.[链接](https://github.com/lodash/lodash/)
 
-## 总体架构图
+## 总体架构
 
-#### 设计目标
+### 设计目标
 
 * 支持全要素的几何编辑和属性编辑
 * 几何编辑过程中支持撤销和重做
@@ -163,11 +163,19 @@
 	
 * `展现层:` 展现层主要是UI相关的逻辑
 
-#### 包依赖关系
+### 包依赖关系
 
 ![包依赖关系](images/包依赖关系.png)
 
-#### 底层API
+顶级包是fastmap,下面一共包括三个主要的包:
+
+* `mapApi`
+* `dataApi`
+* `uikit`
+
+其中mapApi和dataApi独立
+
+### 底层API
 
 
 
