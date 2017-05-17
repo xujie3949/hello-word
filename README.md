@@ -170,6 +170,19 @@
 顶级包是fastmap,下面一共包括三个主要的包:
 
 * `mapApi`
+	* `geometry:`
+	
+		![包依赖关系](images/geometry包.png)
+		
+		geometry包定义几何类以和提供基本几何算法.
+	
+		程序内部都应该使用这里定义的几何类型,从服务端接收到几何数据后应该第一时间转换成这里定义的几何类型,保存到服务时再转换成服务需要的几何数据格式.
+	
+		geometryAgorithm类提供基本的,常用的几何分析方法,其内部调用jsts实现.
+		
+	* `geometry:`
+	
+		![包依赖关系](images/geometry包.png)
 * `dataApi`
 * `uikit`
 
