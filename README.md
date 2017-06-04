@@ -172,7 +172,7 @@
 * `mapApi`
 	* `geometry:`
 	
-		![包依赖关系](images/geometry包.png)
+		![geometry包](images/geometry包.png)
 		
 		geometry包定义几何类以和提供基本几何算法.
 	
@@ -182,7 +182,7 @@
 		
 	* `symbol:`
 	
-		![包依赖关系](images/symbol包.png)
+		![symbol包](images/symbol包.png)
 		
 		地图上所有可见的要素都抽象为地图符号,总的分为点线面三种符号,三种符号下面各自派生出若干种类型类的符号.每个符号由两部分组成,符号属性和几何.
 		
@@ -196,7 +196,7 @@
 		
 	* `feedback:`
 		
-		![包依赖关系](images/feedback包.png)
+		![feedback包](images/feedback包.png)
 		
 		地图上用来提示用户的符号称为反馈,实际上反馈是由若干个符号组成的.所有的反馈的都绘制在一个单独的反馈图层.
 		
@@ -206,7 +206,7 @@
 		
 	* `layer:`
 		
-		![包依赖关系](images/layer包.png)
+		![layer包](images/layer包.png)
 		
 		整个地图实际上由多个图层构成,Layer是基类,下面派生出若干个不同类型的图层
 		
@@ -222,7 +222,7 @@
 		
 	* `source:`
 		
-		![包依赖关系](images/source包.png)
+		![source包](images/source包.png)
 		
 		所有从服务器获取的地图数据都会被存储在数据源中,当地图的可视范围发生变化时,数据源中的数据会被更新.
 		
@@ -234,9 +234,9 @@
 		
 	* `scene:`
 		
-		![包依赖关系](images/scene包.png)
+		![scene包](images/scene包.png)
 		
-		s场景由多个图层组成
+		场景由多个图层组成
 		
 		SceneLayer表示场景中的一个图层
 		
@@ -246,9 +246,9 @@
 		
 	* `snap:`
 		
-		![包依赖关系](images/snap包.png)
+		![snap包](images/snap包.png)
 		
-		s捕捉表示从地图上选取要素,SnapActor是一个基类,称为捕捉器,下面派生了各种类型的捕捉器
+		捕捉表示从地图上选取要素,SnapActor是一个基类,称为捕捉器,下面派生了各种类型的捕捉器
 		
 		FeatureSnapActor用于从地图上捕捉离鼠标最近的指定类型的地图要素
 		
@@ -264,6 +264,24 @@
 		
 		FullScreenFeatureSnapActor用于在全屏幕范围内捕捉离鼠标最近的指定类型的地图要素
 * `dataApi`
+	* `feature:`
+		
+		![feature包](images/feature包.png)
+		
+		feature由properties和geometry构成,properties当中有两个最重要的属性pid和geoLiveType.feature的geometry属性会被用来做要素选择,选中高亮等.feature的properties种只包含数据,不包含渲染相关信息.
+		
+	* `render:`
+		
+		![render包](images/render包.png)
+		
+		render定义了每种feature如何进行渲染和选中高亮
+		
+	* `model:`
+	
+		![model包](images/model包.png)
+		
+		model包定义了要素的编辑模型,主要用于属性编辑和几何编辑
+		
 * `uikit`
 
 其中mapApi和dataApi独立
