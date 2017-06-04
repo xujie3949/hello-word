@@ -180,9 +180,89 @@
 	
 		geometryAgorithm类提供基本的,常用的几何分析方法,其内部调用jsts实现.
 		
-	* `geometry:`
+	* `symbol:`
 	
-		![包依赖关系](images/geometry包.png)
+		![包依赖关系](images/symbol包.png)
+		
+		地图上所有可见的要素都抽象为地图符号,总的分为点线面三种符号,三种符号下面各自派生出若干种类型类的符号.每个符号由两部分组成,符号属性和几何.
+		
+		Vector用于处理向量相关的运算,Matrix处理矩阵相关运算,Transform管理变换矩阵状态
+		
+		GeometryFactory用于处理geojson和geometry之间的相互转换
+		
+		ImageLoader用于加载符号用到的图片,ResourceFactory用于管理符号用到的图片
+		
+		Template处理按照模式切分线段
+		
+	* `feedback:`
+		
+		![包依赖关系](images/feedback包.png)
+		
+		地图上用来提示用户的符号称为反馈,实际上反馈是由若干个符号组成的.所有的反馈的都绘制在一个单独的反馈图层.
+		
+		Feedback代表一个反馈,由多个符号组成
+		
+		FeedbackController管理所有的反馈,提供添加,删除,刷新等接口.
+		
+	* `layer:`
+		
+		![包依赖关系](images/layer包.png)
+		
+		整个地图实际上由多个图层构成,Layer是基类,下面派生出若干个不同类型的图层
+		
+		FeedbackLayer专门用于绘制反馈
+		
+		GridLayer专门用于绘制网格
+		
+		MeshLayer专门用于绘制图幅
+		
+		TileBoundsLayer专门用于绘制瓦片边界
+		
+		WholeCanvasLayer专门用于绘制所有的矢量图层
+		
+	* `source:`
+		
+		![包依赖关系](images/source包.png)
+		
+		所有从服务器获取的地图数据都会被存储在数据源中,当地图的可视范围发生变化时,数据源中的数据会被更新.
+		
+		Source代表一个数据源,提供按瓦片,按类型,按id查询等接口
+		
+		ClassicalSource,InfoSource都从Source派生而来,区别在于CreateParameter方法实现不一样
+		
+		SourceController用于管理所有的数据源,解析数据源配置文件,请求服务数据等
+		
+	* `scene:`
+		
+		![包依赖关系](images/scene包.png)
+		
+		s场景由多个图层组成
+		
+		SceneLayer表示场景中的一个图层
+		
+		Scene表示一个场景
+		
+		SceneController用于管理所有的场景
+		
+	* `snap:`
+		
+		![包依赖关系](images/snap包.png)
+		
+		s捕捉表示从地图上选取要素,SnapActor是一个基类,称为捕捉器,下面派生了各种类型的捕捉器
+		
+		FeatureSnapActor用于从地图上捕捉离鼠标最近的指定类型的地图要素
+		
+		GivenFeatureSnapActor用于从地图上捕捉离鼠标最近的给定要素
+		
+		GivenObjectSnapActor用于捕捉离鼠标最近的给定要素
+		
+		GivePointSnapActor用于捕捉离鼠标最近的给定点
+		
+		NearestLocationSnapActor用于捕捉线上离鼠标最近的位置,不一定是形状点
+		
+		NearestVertexSnapActor用于捕捉线上离鼠标最近的形状点
+		
+		FullScreenFeatureSnapActor用于在全屏幕范围内捕捉离鼠标最近的指定类型的地图要素
 * `dataApi`
 * `uikit`
 
