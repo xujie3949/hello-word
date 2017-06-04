@@ -283,6 +283,82 @@
 		model包定义了要素的编辑模型,主要用于属性编辑和几何编辑
 		
 * `uikit`
+	
+	* `check:`
+		
+		![check包](images/check包.png)
+		
+		check包实现了检查引擎,在对要素进行几何编辑的过程中对编辑每一步产生的结果进行业务检查
+		
+		CheckRule代表检查规则基类
+		
+		CheckResult代表检查产生的结果
+		
+		CheckEngine代表检查引擎,检查引擎本质上是一个检查规则的集合,另外包含了检查时机,要素类型属性.检查引擎会将所包含的检查规则逐条进行验证,并记录下所有检查出来的错误.
+		
+		CheckController用于管理所有的检查引擎,提供获取检查引擎的接口
+		
+	* `operation:`
+	
+		![operation包](images/operation包.png)
+		
+		operation包主要实现redo,undo功能
+		
+		Operation代表一个操作的基类
+		
+		EditResultOperation代表用于处理EditResult的操作
+		
+		PathEditOperation代表处理Path编辑的操作
+		
+		PathVertexAddOperation代表添加形状点的操作
+		
+		PathVertexMoveOperation代表移动形状点的操作
+		
+		PathVertexRemoveOperation代表删除形状点的操作
+		
+		OperationController用于管理所有的操作,内部维护一个操作栈,用于支持undo,redo功能
+		
+	* `tools:`
+	
+		![tools包](images/tools包.png)
+		
+		tools包主要实现主要定义地图工具类,用于处理地图交互
+		
+		Tool代表工具的基类,定义了所有的鼠标和键盘事件接口以及工具的激活和反激活接口
+		
+		MapTool代表是跟地图操作相关的工具,实现了鼠标缩放地图和右键单击移动地图功能
+		
+		PanTool代表地图漫游工具,实现了鼠标拖拽,键盘移图等功能
+		
+		PointSelectTool代表点选工具,实现了点选任意要素功能
+		
+		RectSelectTool代表框选工具,实现了框选任意要素功能
+		
+		TrackSelectTool代表追踪选择工具,实现了追中选择任意类型link功能
+		
+		AssistantTool代表分析工具的基类
+		
+		DistanceTool代表距离测量工具,主要用于测距
+		
+		AreaTool代表面积测量工具,主要用于测量面积
+		
+		AngleTool代表角度测量工具,主要用于测量角度
+		
+		ToolController用于管理所有的工具,工具分类前台工具和后台工具,所有的后台工具同时处于激活状态,前台工具同一时间只能有一个处于激活状态,彼此之间保持互斥.ToolController负责接收地图的键盘和鼠标事件,并将事件分发到对应的工具.
+		
+	* `edit:`
+		
+		![edit包](images/edit包.png)
+		
+		edit包含三个部分ShapeEdit,RelationEdit,ComplexEdit
+		
+		Tool代表工具的基类,定义了所有的鼠标和键盘事件接口以及工具的激活和反激活接口
+		
+		MapTool代表是跟地图操作相关的工具,实现了鼠标缩放地图和右键单击移动地图功能
+		
+		PanTool代表地图漫游工具,实现了鼠标拖拽,键盘移图等功能
+		
+		PointSelectTool代表点选工具,实现了点选任意要素功能
 
 其中mapApi和dataApi独立
 
