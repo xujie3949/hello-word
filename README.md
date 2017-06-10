@@ -274,7 +274,7 @@
 		
 		![render包](images/render包.png)
 		
-		render定义了每种feature如何进行渲染和选中高亮
+		render定义了每种feature如何进行渲染和划过高亮
 		
 	* `model:`
 	
@@ -283,10 +283,140 @@
 		model包定义了要素的编辑模型,主要用于属性编辑和几何编辑
 		
 * `uikit`
-
-其中mapApi和dataApi独立
-
-### 底层API
+	
+	* `check:`
+		
+		![check包](images/check包.png)
+		
+		check包实现了检查引擎,在对要素进行几何编辑的过程中对编辑每一步产生的结果进行业务检查
+		
+		CheckRule代表检查规则基类,所有的业务检查规则从此类派生
+		
+		CheckResult代表检查产生的结果
+		
+		CheckEngine代表检查引擎,检查引擎本质上是一个检查规则的集合,另外包含了检查时机,要素类型属性.检查引擎会将所包含的检查规则逐条进行验证,并记录下所有检查出来的错误.
+		
+		CheckController用于管理所有的检查引擎,提供获取检查引擎的接口
+		
+	* `operation:`
+	
+		![operation包](images/operation包.png)
+		
+		operation包主要实现redo,undo功能
+		
+		Operation代表一个操作的基类
+		
+		EditResultOperation代表用于处理EditResult的操作
+		
+		PathEditOperation代表处理Path编辑的操作
+		
+		PathVertexAddOperation代表添加形状点的操作
+		
+		PathVertexMoveOperation代表移动形状点的操作
+		
+		PathVertexRemoveOperation代表删除形状点的操作
+		
+		OperationController用于管理所有的操作,内部维护一个操作栈,用于支持undo,redo功能
+		
+	* `tools:`
+	
+		![tools包](images/tools包.png)
+		
+		tools包主要实现主要定义地图工具类,用于处理地图交互
+		
+		Tool代表工具的基类,定义了所有的鼠标和键盘事件接口以及工具的激活和反激活接口
+		
+		MapTool代表是跟地图操作相关的工具,实现了鼠标缩放地图和右键单击移动地图功能
+		
+		PanTool代表地图漫游工具,实现了鼠标拖拽,键盘移图等功能
+		
+		AssistantTool表示分析工具基类,测距,测角度,测面积都从此类派生
+		
+		DistanceTool代表距离测量工具,主要用于测距
+		
+		AreaTool代表面积测量工具,主要用于测量面积
+		
+		AngleTool代表角度测量工具,主要用于测量角度
+		
+		SelectTool表示选择工具基类,点选,框选等不同选择方式都从此类派生
+		
+		PointSelectTool代表点选工具,实现了点选任意要素功能
+		
+		RectSelectTool代表框选工具,实现了框选任意要素功能
+		
+		TrackSelectTool代表追踪选择工具,实现了追中选择任意类型link功能
+		
+		ShapeTool代表形状编辑工具的基类
+		
+		PointTool代表点编辑工具,主要用于点几何编辑
+		
+		PathTool代表线编辑工具,平滑修形,插入点,移动点,删除点,追加点都从此类派生
+		
+		PathSoomthTool代表平滑修形工具,主要用于线几何编辑,可以实现插点,删点,移点.注意平滑修形虽然有插点,删点,移点功能,但并不能取代插点,移点,删点工具,因为他们的侧重点不同,操作方式也不同,适用的场景也不同.
+		
+		PathVertexAddTool代表追加点工具,主要用于向线几何的起点或终点追加形状点
+		
+		PathVertexInsertTool代表插入点工具,主要用于向先几何的形状点之间插入形状点
+		
+		PathVerteMoveTool代表移动形状点工具,主要用于移动线几何上的形状点
+		
+		PathVertexRemoveTool代表删除形状点工具,主要用于删除线几何上的形状点
+		
+		RelationTool代表关系编辑工具的基类
+		
+		LinkPointTool代表线点工具,主要用于编辑由link,node组成的关系要素
+		
+		LinkPointLinkTool代表线点线工具,主要用于编辑由link,node,link组成的关系要素
+		
+		LinkPointLinksTool代表线点多线工具,主要用于编辑由link,node,links组成的关系要素
+		
+		ComplexTool代表复杂编辑工具基类,一些复杂的,特殊的编辑由此类派生
+		
+		UpDownDepartTool代表上下线分离工具,主要用于制作上下线分离
+		
+		ChangeLinkDirectTool代表改变link方向工具,主要用于在地图上修改link方向
+		
+		ToolController用于管理所有的工具,工具分类前台工具和后台工具,所有的后台工具同时处于激活状态,前台工具同一时间只能有一个处于激活状态,彼此之间保持互斥.ToolController负责接收地图的键盘和鼠标事件,并将事件分发到对应的工具.
+		
+	* `edit:`
+		
+		![edit包](images/edit包.png)
+		
+		edit包含三个部分形状编辑,关系编辑,复杂编辑
+		
+		Editor表示编辑器基类
+		
+		ShapeEditor表示形状编辑器,用于管理形状编辑工具,根据不同的编辑结果激活对应的形状编辑工具等
+		
+		RelationEditor表示关系编辑器,用于管理关系编辑工具,根据不同的编辑结果激活对应的关系编辑工具等
+		
+		ComplexEditor表示复杂编辑器,用于管理复杂编辑工具,根据不同的编辑结果激活对应的复杂编辑工具等
+		
+	* `topoEditor:`
+		
+		![topoEditor包](images/topoEditor包.png)
+		
+		topoEditor主要处理各种要素的增删改查等具体的业务逻辑,每种要素都有一个与之对应的topoEditor
+		
+		TopoEditor表示编辑器基类,提供增删改查业务的基本实现,并且为每种要素派生出一个子类.如果某要素的增删改查业务比较特殊,那就重写父类对应的方法.
+		
+	* `editControl:`
+		
+		![editControl包](images/editControl包.png)
+		
+		editControl包主要实现编辑流程.可以把每一个地图操作,比如选择要素,删除要素,修改要素,查询要素等都抽象成流程,他们都是按照一定步骤组合来最终实现某种功能.
+		
+		主要分为SelectControl,CreateContrl,ModifyControl,DeleteControl,ComplexControl几种类型的编辑流程,每一种编辑流程下又可以根据不同业务逻辑进行细分从而进行更精细的流程控制
+		
+	* `highlight:`
+		
+		![highlight包](images/highlight包.png)
+		
+		highlight包主要实现要素模型的高亮.可以按照高亮规则来高亮要素模型的指定部分
+		
+		GeoLiveHighlight主要负责高亮一个模型对象,查找要素对应的高亮规则,并且按照高亮规则创建反馈
+		
+		HighlightController负责管理所有被高亮的对象
 
 
 
